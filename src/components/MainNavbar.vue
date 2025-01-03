@@ -55,15 +55,19 @@
 .navbar {
     border-bottom: 1px solid #000;
     width: 100%;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
 }
 
 .wapper {
     margin: 0 auto;
     max-width: 1400px;
     width: 100%;
-    height: 110px;
+    height: 118px;
     display: flex;
     justify-content: space-between;
+    padding: 0 20px;
 }
 
 .logoBox {
@@ -164,6 +168,7 @@ nav {
 
 .toggleMenu {
     display: none;
+
     .hamburger {
         position: absolute;
         padding: 10px;

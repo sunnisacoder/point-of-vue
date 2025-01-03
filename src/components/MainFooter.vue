@@ -1,8 +1,13 @@
 <template>
-    <div class="form">
-
-    </div>
     <footer>
+        <div class="form">
+            <div class="inner">
+                <a href="javascript:;" class="formBtn">
+                    <img src="@/assets/resume.png" alt="">
+                    <span>攤位申請</span>
+                </a>
+            </div>
+        </div>
         <div class="wrap">
             <ul class="footerList">
                 <li>
@@ -24,16 +29,69 @@
 </template>
 
 <style lang="scss" scoped>
-footer{
-    position: relative;
-    bottom: 0;
-    padding: 15px 0;
+.form {
     width: 100%;
+    border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: flex-end;
 }
+
+.inner{
+    display: flex;
+    width: 1350px;
+    margin: auto;
+    justify-content: flex-end;
+}
+
+.formBtn {
+    width: 150px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-bottom: 0;
+    gap: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 800;
+    border-radius: 10px 10px 0 0;
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+
+    &:hover {
+        background-color: #42b983;
+        color: #fff;
+        transition: background-color 0.3s;
+
+        img {
+            filter: invert(100%);
+        }
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1350px;
+}
+
 ul.footerList {
     display: flex;
-    justify-content: center;
-    
+    margin-left: -15px;
+    letter-spacing: 2px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     li {
         list-style: none;
@@ -50,15 +108,15 @@ ul.footerList {
             content: "";
         }
 
-        &:hover{
-            a{
+        &:hover {
+            a {
                 color: #42b983;
                 transition: color 0.3s;
             }
         }
     }
 
-    a{
+    a {
         text-decoration: none;
         color: #676767;
     }

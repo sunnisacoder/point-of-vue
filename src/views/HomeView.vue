@@ -2,14 +2,14 @@
   <div class="homeSection">
     <div class="textBox">
       <div class="inner">
-        <h1>Branding design strategy</h1>
-        <p>Let's go to hero</p>
+        <h1>Dakeng<br>Nine<br>Market </h1>
+        <p>Let's eat.</p>
       </div>
     </div>
     <div class="infoBox">
       <div class="inner">
-        <p class="title">九號夜市</p>
-        <p class="des">拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦拉啦啦啦</p>
+        <p class="title">獨樹一幟 - 九號夜市</p>
+        <p class="des">入夜後，市集轉換為夜市模式，超過 80 個攤位提供各類經典小吃與創意料理，從鹽酥雞到章魚燒一應俱全，滿足不同口味需求。</p>
       </div>
     </div>
     <div class="bannerArea">
@@ -23,9 +23,9 @@
 <style lang="scss">
 .homeSection {
   margin: 0 auto;
+  margin-top: 50px;
   max-width: 1350px;
   position: relative;
-  // background-color: #f7f7f7;
 }
 
 .bannerArea {
@@ -61,6 +61,10 @@
     color: #42b983;
     width: 490px;
   }
+  h1{
+    text-transform: uppercase;
+    font-weight: 800;
+  }
 }
 
 .infoBox {
@@ -75,6 +79,10 @@
   p {
     color: #1e7972;
     line-height: 1.5;
+  }
+
+  .title{
+    font-weight: 800;
   }
 }
 

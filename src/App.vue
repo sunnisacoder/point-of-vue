@@ -6,7 +6,9 @@ import MainFooter from "./components/MainFooter.vue";
 
 <template>
   <MainNavbar />
-  <router-view />
+  <div class="outer">
+    <router-view />
+  </div>
   <MainFooter />
 </template>
 
@@ -17,6 +19,9 @@ import MainFooter from "./components/MainFooter.vue";
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding: 0 10px;
+  // padding: 0 10px;
+}
+.outer{
+  padding: 0 20px;
 }
 </style>
