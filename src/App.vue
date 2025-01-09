@@ -8,13 +8,18 @@ import MainFooter from "./components/MainFooter.vue";
 
 <template>
   <!-- <TheIcon icon="home"/> -->
-  <header class="header">
-    <MainNavbar />
-  </header> 
-  <div class="outer">
-    <router-view />
-  </div>
-  <MainFooter />
+  <template v-if="$route.name!== 'login'">
+    <header class="header">
+      <MainNavbar />
+    </header>
+    <div class="outer">
+      <router-view />
+    </div>
+    <MainFooter />
+  </template>
+  <template v-else>
+    <router-view></router-view>
+  </template>
 </template>
 
 <style lang="scss">
@@ -26,7 +31,8 @@ import MainFooter from "./components/MainFooter.vue";
   color: #2c3e50;
   // padding: 0 10px;
 }
-.outer{
+
+.outer {
   padding: 0 20px;
 }
 </style>
