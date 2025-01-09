@@ -4,6 +4,7 @@
         <input type="text" placeholder="Search" @change="searchPosts" />
         <TheIcon icon="search" />
     </div>
+    <h2 class="keyword">有關「雞排」的搜尋結果</h2>
     <div class="wrap">
         <div class="postList">
             <div class="postBox">
@@ -255,5 +256,13 @@ import TheIcon from "../components/TheIcon.vue";
     width: 100%;
     color: #333;
     font-size: 14px;
+}
+
+.keyword{
+    font-weight: 600;
+    font-size: 20px;
+    text-align: start;
+    color: #333;
+    margin-bottom: 40px;
 }
 </style>

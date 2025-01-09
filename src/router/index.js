@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginPage.vue'
 import CommentPage from "../views/CommentPage.vue";
+import SearchPage from "../views/SearchPage.vue";
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
     path: '/comment',
     name: 'comment',
     component: CommentPage
+  },
+  {
+    path: '/search-result',
+    name: 'search-result',
+    component: SearchPage
   }
 ]
 
