@@ -8,24 +8,20 @@
             </div>
             <nav class="nav">
                 <router-link to="/" class="flipEffect">
-                    <span>回首頁</span>
                     <span>Home</span>
+                    <span>回首頁</span>
                 </router-link>
                 <router-link to="/about" class="flipEffect">
-                    <span>關於我們</span>
                     <span>about</span>
+                    <span>關於夜市王</span>
                 </router-link>
-                <router-link to="" class="flipEffect">
-                    <span>聯絡我們</span>
-                    <span>contact</span>
-                </router-link>
-                <router-link to="" class="flipEffect">
-                    <span>聯絡我們</span>
-                    <span>contact</span>
-                </router-link>
-                <router-link to="" class="flipEffect">
-                    <span>聯絡我們</span>
-                    <span>contact</span>
+                <!-- <router-link to="" class="flipEffect">
+                    <span>rank</span>
+                    <span>美食評分</span>
+                </router-link> -->
+                <router-link to="/comment" class="flipEffect">
+                    <span>comment</span>
+                    <span>我是美食家</span>
                 </router-link>
             </nav>
             <div class="socialMediaBox">
@@ -138,7 +134,7 @@ nav {
             border-radius: 5px;
             text-align: center;
             box-sizing: border-box;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             transform-origin: 50% 50% -20px;
 
             &:nth-child(1) {

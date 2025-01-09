@@ -1,11 +1,16 @@
 <script setup>
+// import "@/assets/reset.css"
 import MainNavbar from "./components/MainNavbar.vue";
 import MainFooter from "./components/MainFooter.vue";
+// import TheIcon from "./components/TheIcon.vue";
 
 </script>
 
 <template>
-  <MainNavbar />
+  <!-- <TheIcon icon="home"/> -->
+  <header class="header">
+    <MainNavbar />
+  </header> 
   <div class="outer">
     <router-view />
   </div>

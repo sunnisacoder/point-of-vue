@@ -29,7 +29,6 @@
 }
 
 .bannerArea {
-  margin: 50px 0;
   width: 100%;
 
   .imgBox {

@@ -4,7 +4,7 @@
             <div class="inner">
                 <a href="javascript:;" class="formBtn">
                     <img src="@/assets/resume.png" alt="">
-                    <span>攤位申請</span>
+                    <span>意見反饋</span>
                 </a>
             </div>
         </div>
@@ -12,7 +12,7 @@
             <ul class="footerList">
                 <li>
                     <span class="copyright">
-                        2024 © sunnisacoder
+                        2024 © made by Sunny Fan for practice
                     </span>
                 </li>
                 <li class="tel">
@@ -65,7 +65,7 @@
     &:hover {
         background-color: #42b983;
         color: #fff;
-        transition: background-color 0.3s;
+        transition: background-color 0.4s;
 
         img {
             filter: invert(100%);
@@ -74,10 +74,9 @@
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    
+    // position: fixed;
+    // bottom: 0;
+    width: 100%;    
 }
 
 .wrap {
