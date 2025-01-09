@@ -11,10 +11,10 @@
                     <span>Home</span>
                     <span>回首頁</span>
                 </router-link>
-                <router-link to="/about" class="flipEffect">
+                <!-- <router-link to="/about" class="flipEffect">
                     <span>about</span>
                     <span>關於夜市王</span>
-                </router-link>
+                </router-link> -->
                 <!-- <router-link to="" class="flipEffect">
                     <span>rank</span>
                     <span>美食評分</span>
@@ -25,12 +25,12 @@
                 </router-link>
             </nav>
             <div class="socialMediaBox">
-                <a href="https://github.com/sunnisacoder" target="_blank">
+                <button>
+                    <img src="@/assets/upload.png" alt="resume">
+                </button>
+                <!-- <a href="https://github.com/sunnisacoder" target="_blank">
                     <img src="@/assets/github.png" alt="github">
-                </a>
-                <a href="https://www.cake.me/s--nhlzTMUkyVt4jZxloSzhNw--/funsunny1107" target="_blank">
-                    <img src="@/assets/profile.png" alt="resume">
-                </a>
+                </a> -->
                 <a href="https://www.cake.me/s--nhlzTMUkyVt4jZxloSzhNw--/funsunny1107" target="_blank">
                     <img src="@/assets/profile.png" alt="resume">
                 </a>
@@ -47,7 +47,7 @@
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .navbar {
     border-bottom: 1px solid #000;
     width: 100%;
@@ -59,7 +59,6 @@
 .wapper {
     margin: 0 auto;
     max-width: 1400px;
-    width: 100%;
     height: 118px;
     display: flex;
     justify-content: space-between;
@@ -188,6 +187,24 @@ nav {
 .socialMediaBox {
     display: flex;
     align-items: center;
+
+    button{
+        border: none;
+        background-color: transparent;
+        border-radius: 50%;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        img{
+            width: 35px;
+        }
+
+        &:hover{
+            background-color: #000;
+            img{
+                filter: invert(100%)
+            };
+        }
+    }
 }
 
 // 1180時網站轉為行動裝置版

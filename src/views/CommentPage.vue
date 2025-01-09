@@ -1,10 +1,10 @@
 <template>
     <h1>我是美食家 <br>Comment Page</h1>
-    <div class="searchInput">
-        <input type="text" placeholder="Search" @change="searchPosts" />
-        <TheIcon icon="search" />
-    </div>
     <div class="wrap">
+        <div class="searchInput">
+            <input type="text" placeholder="Search" @change="searchPosts" />
+            <TheIcon icon="search" />
+        </div>
         <div class="postList">
             <div class="postBox">
                 <div class="postItem">
@@ -134,11 +134,10 @@ import TheIcon from "../components/TheIcon.vue";
 <style lang="scss" scoped>
 .wrap {
     width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
     position: relative;
-    max-width: 1760px;
-    padding-bottom: 110px;
-    display: flex;
-    flex-direction: column;
+    padding-bottom: 50px;
 }
 
 .searchInput {
@@ -150,7 +149,7 @@ import TheIcon from "../components/TheIcon.vue";
     margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    
+
     input {
         width: 100%;
         height: 100%;
@@ -175,48 +174,47 @@ import TheIcon from "../components/TheIcon.vue";
 }
 
 .postList {
-    display: flex;
-}
-
-.postBox {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    column-gap: 20px;
-    row-gap: 50px;
-}
-
-.postItem {
-    display: flex;
-    flex-direction: column;
-}
-
-.imgBox {
-    display: flex;
-    width: 100%;
-    margin-bottom: 10px;
-
-    img {
+    .postBox {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 0px 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        column-gap: 20px;
+        row-gap: 50px;
     }
-}
 
-.meta {
-    display: flex;
-    justify-content: space-between;
-
-    .info {
+    .postItem {
         display: flex;
-        align-items: center;
-        gap: 5px;
+        flex-direction: column;
 
-        img {
-            width: 24px;
-            height: 24px;
+        .imgBox {
+            display: flex;
+            width: 100%;
+            margin-bottom: 10px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0px 20px;
+            }
         }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+
+            .info {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+
     }
 }
 
@@ -228,20 +226,22 @@ import TheIcon from "../components/TheIcon.vue";
     column-gap: 16px;
     row-gap: 4px;
     padding: 0 10px;
-}
 
-.actions>svg {
-    width: 32px;
-    height: 32px;
-    grid-row: 1 / 2;
-    cursor: pointer;
-}
+    svg {
+        width: 32px;
+        height: 32px;
+        grid-row: 1 / 2;
+        cursor: pointer;
+    }
 
-.actions>span {
-    font-size: 14px;
+    span {
+        font-size: 14px;
+    }
 }
 
 .des {
+    text-align: start;
+    margin-bottom: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -256,4 +256,5 @@ import TheIcon from "../components/TheIcon.vue";
     color: #333;
     font-size: 14px;
 }
+
 </style>

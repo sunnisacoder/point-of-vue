@@ -4,7 +4,7 @@
             <div class="inner">
                 <a href="javascript:;" class="formBtn">
                     <img src="@/assets/resume.png" alt="">
-                    <span>意見反饋</span>
+                    <span>個人檔案</span>
                 </a>
             </div>
         </div>
@@ -12,12 +12,12 @@
             <ul class="footerList">
                 <li>
                     <span class="copyright">
-                        2024 © made by Sunny Fan for practice
+                        2024 © made by Sunny Fan
                     </span>
                 </li>
                 <li class="tel">
                     <span>TEL.</span>
-                    <a href="tel:0932-799477" target="_blank">0932-799411</a>
+                    <a href="tel:0932-799411" target="_blank">0932-799411</a>
                 </li>
                 <li class="mail">
                     <span>EMAIL.</span>
@@ -36,7 +36,7 @@
     justify-content: flex-end;
 }
 
-.inner{
+.inner {
     display: flex;
     width: 1350px;
     margin: auto;
@@ -74,9 +74,9 @@
 }
 
 footer {
-    // position: fixed;
-    // bottom: 0;
-    width: 100%;    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .wrap {
@@ -87,6 +87,7 @@ footer {
 
 ul.footerList {
     display: flex;
+    flex-wrap: wrap;
     margin-left: -15px;
     letter-spacing: 2px;
     padding-top: 15px;
@@ -119,6 +120,12 @@ ul.footerList {
         text-decoration: none;
         color: #676767;
     }
+}
 
+@media (max-width:992px) {
+    .footerList {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 </style>
