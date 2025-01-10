@@ -7,15 +7,15 @@
         </div>
         <div class="postList">
             <div class="postBox">
-                <div class="postItem">
+                <div class="postItem" v-for="post in posts" :post="post" :key="post.id">
                     <div class="inner">
                         <div class="imgBox">
-                            <img src="../assets/meat.jpg">
+                            <img :src="post.image"/>
                         </div>
                         <div class="meta">
                             <div class="info">
                                 <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                                <span>范桑尼</span>
+                                <span>{{ post?.user?.name }}</span>
                             </div>
                             <div class="actions">
                                 <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
@@ -24,117 +24,48 @@
                             </div>
                         </div>
                         <div class="des">
-                            <p>這間雞排超讚，為什麼夜市王他會被刷下來？這間雞排超讚，為什麼夜市王他會被刷下來？這間雞排超讚，為什麼夜市王他會被刷下來？</p>
+                            <p>
+                                {{ post.description }}
+                            </p>
                         </div>
-                        <span class="time">5分鐘之前發布</span>
-                    </div>
-                </div>
-                <div class="postItem">
-                    <div class="inner">
-                        <div class="imgBox">
-                            <img src="../assets/meat.jpg">
-                        </div>
-                        <div class="meta">
-                            <div class="info">
-                                <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                                <span>范桑尼</span>
-                            </div>
-                            <div class="actions">
-                                <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
-                                <TheIcon icon="comment" fill="none" stroke="#000" /><span>6</span>
-                                <TheIcon icon="favorite" fill="none" stroke="#000" /><span>1</span>
-                            </div>
-                        </div>
-                        <div class="des">
-                            <p>這間雞排超讚，為什麼夜市王他會被刷下來？</p>
-                        </div>
-                        <span class="time">5分鐘之前發布</span>
-                    </div>
-                </div>
-                <div class="postItem">
-                    <div class="inner">
-                        <div class="imgBox">
-                            <img src="../assets/meat.jpg">
-                        </div>
-                        <div class="meta">
-                            <div class="info">
-                                <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                                <span>范桑尼</span>
-                            </div>
-                            <div class="actions">
-                                <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
-                                <TheIcon icon="comment" fill="none" stroke="#000" /><span>6</span>
-                                <TheIcon icon="favorite" fill="none" stroke="#000" /><span>1</span>
-                            </div>
-                        </div>
-                        <div class="des">
-                            <p>這間雞排超讚，為什麼夜市王他會被刷下來？</p>
-                        </div>
-                        <span class="time">5分鐘之前發布</span>
-                    </div>
-                </div>
-                <div class="postItem">
-                    <div class="inner">
-                        <div class="imgBox">
-                            <img src="../assets/meat.jpg">
-                        </div>
-                        <div class="meta">
-                            <div class="info">
-                                <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                                <span>范桑尼</span>
-                            </div>
-                            <div class="actions">
-                                <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
-                                <TheIcon icon="comment" fill="none" stroke="#000" /><span>6</span>
-                                <TheIcon icon="favorite" fill="none" stroke="#000" /><span>1</span>
-                            </div>
-                        </div>
-                        <div class="des">
-                            <p>這間雞排超讚，為什麼夜市王他會被刷下來？</p>
-                        </div>
-                        <span class="time">2024年12月12日
-                        </span>
-                    </div>
-                </div>
-                <div class="postItem">
-                    <div class="inner">
-                        <div class="imgBox">
-                            <img src="../assets/meat.jpg">
-                        </div>
-                        <div class="meta">
-                            <div class="info">
-                                <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                                <span>范桑尼</span>
-                            </div>
-                            <div class="actions">
-                                <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
-                                <TheIcon icon="comment" fill="none" stroke="#000" /><span>6</span>
-                                <TheIcon icon="favorite" fill="none" stroke="#000" /><span>1</span>
-                            </div>
-                        </div>
-                        <div class="des">
-                            <p>這間雞排超讚，為什麼夜市王他會被刷下來？</p>
-                        </div>
-                        <span class="time">5分鐘之前發布</span>
+                        <span class="time">{{ dateToRelative(post.publishedAt) }}</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <CommentPageDetail/> -->
-        <!-- <PostUpload /> -->
     </div>
+    <!-- <CommentPageDetail/> -->
+    <PostUpload v-if="showPostUpload" />
 </template>
 
 <script setup>
 import TheIcon from "../components/TheIcon.vue";
+import { useStore } from "vuex";
+import { computed, onMounted,defineProps } from "vue";
 // import CommentPageDetail from "../components/CommentPageDetail.vue";
-// import PostUpload from "../components/PostUpload.vue";
+import PostUpload from "../components/PostUpload.vue";
+import { dateToRelative } from "@/util/date";
+
+const store = useStore();
+const showPostUpload = computed(() => store.state.showPostUpload);
+const posts = computed(() => store.state.post.list);
+
+onMounted(() => {
+    store.dispatch("loadAllPosts");
+})
+
+defineProps({
+    post: {
+        type: Object,
+        default: () => ({}),
+    },
+});
 </script>
 
 <style lang="scss" scoped>
 .wrap {
     width: 100%;
-    max-width: 1600px;
+    max-width: 1365px;
     margin: 0 auto;
     position: relative;
     padding-bottom: 50px;
@@ -256,5 +187,4 @@ import TheIcon from "../components/TheIcon.vue";
     color: #333;
     font-size: 14px;
 }
-
 </style>

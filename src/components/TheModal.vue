@@ -2,9 +2,9 @@
     <teleport to="body">
         <div class="modal">
             <!-- 遮罩 -->
-            <div class="overlay"></div>
+            <div class="overlay" @click="$emit('close')"></div>
             <div class="modalContent">
-                <div class="closeBtn">
+                <div class="closeBtn" @click="$emit('close')">
                     <TheIcon icon="close" />
                 </div>
                 <slot></slot>
@@ -14,7 +14,14 @@
 </template>
 
 <script setup>
+ /* eslint-disable */ 
 import TheIcon from "../components/TheIcon.vue";
+
+defineEmits(["close"]);
+
+// 點擊 overlay、closeBtn 時，alert 詢問是否真的要離開發文視窗
+// 
+// 
 </script>
 
 <style lang="scss" scoped>

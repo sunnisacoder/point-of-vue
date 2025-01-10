@@ -1,3 +1,12 @@
+<script setup>
+import { useStore } from "vuex";
+
+const store = useStore();
+
+function publishPost() {
+    store.commit("changeShowPostUpload",true)
+}
+</script>
 <template>
     <div class="navbar">
         <div class="wapper">
@@ -25,7 +34,7 @@
                 </router-link>
             </nav>
             <div class="socialMediaBox">
-                <button>
+                <button @click="publishPost()">
                     <img src="@/assets/upload.png" alt="resume">
                 </button>
                 <!-- <a href="https://github.com/sunnisacoder" target="_blank">
@@ -187,11 +196,14 @@ nav {
 .socialMediaBox {
     display: flex;
     align-items: center;
+    gap: 8px;
 
     button{
         border: none;
+        border-radius: 50px;
+        width: 50px;
+        height: 50px;
         background-color: transparent;
-        border-radius: 50%;
         transition: all 0.5s ease;
         cursor: pointer;
         img{
@@ -199,10 +211,8 @@ nav {
         }
 
         &:hover{
-            background-color: #000;
-            img{
-                filter: invert(100%)
-            };
+            background-color: rgba(66,185,131,0.3);
+            transform: translateY(-5px);
         }
     }
 }
