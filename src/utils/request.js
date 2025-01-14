@@ -1,5 +1,3 @@
-// 新增 util > request.js 存放 fetch API
-
 import {
     getJwtToken
 } from "../apis/auth";

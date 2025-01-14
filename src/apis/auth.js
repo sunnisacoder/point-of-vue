@@ -1,6 +1,6 @@
 import {
     request
-} from "../util/request";
+} from "../utils/request";
 
 export function getJwtToken() {
     return localStorage.getItem("jwtToken");

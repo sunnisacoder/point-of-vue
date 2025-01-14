@@ -13,7 +13,8 @@ module.exports = defineConfig({
       "/upload": {
         target: "http://localhost:1337",
         changeOrigin: true, 
+        path: './public/uploads',
       },
-    }
+    },
   }
 })

@@ -6,7 +6,7 @@ import { ref } from "vue";
 const store = useStore();
 const imageObjUrl = ref("");
 
-const image = ref(null);
+const image = ref("");
 const description = ref("");
 
 async function handleImageUpload(e) {
@@ -22,6 +22,18 @@ function publishPost(){
         description: description.value,
     })
 }
+
+// async function publishPost() {
+//     const response = await store.dispatch("uploadPost", {
+//         image: image.value,  // 這裡確保是上傳後的圖片 URL
+//         description: description.value,
+//     });
+
+//     // 更新本地圖片預覽為伺服器返回的圖片 URL
+//     if (response?.imageUrl) {
+//         imageObjUrl.value = response.imageUrl;
+//     }
+// }
 </script>
 
 <template>
