@@ -1,5 +1,5 @@
 <template>
-    <TheModal @close="this.$store.dispatch('hidePostDetails')">
+    <TheModal @close="$store.dispatch('hidePostDetails')">
         <div class="detailBox">
             <div class="imgBox">
                 <picture>
@@ -9,28 +9,32 @@
             <div class="rightBox">
                 <div class="meta">
                     <div class="info">
-                        <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                        <span>{{ post.user?.name }}</span>
+                        <TheAvatar/>
+                        <span>傘蜥蜴</span> <!--{{ post.user?.name }} -->
                     </div>
                     <div class="des">
                         <p>
                             {{ post.description }}
                         </p>
                     </div>
-                    <span class="time">5分鐘之前發布</span>
+                    <span class="time">{{ dateToRelative(post.publishedAt) }}</span>
                 </div>
                 <div class="commentBox">
-                    <div class="commentItem">
+                    <div class="commentItem" v-for="comment in comments" :key="comment.id">
                         <div class="user">
-                            <img src="../assets/avatarDefault.png" alt="" class="avatar">
+                            <TheAvatar/>
                         </div>
                         <div class="inner">
                             <div class="topBox">
-                                <p class="content"><span
-                                        class="userName">巧柔</span>沒吃過！看起來超讚！沒吃過！看起來超讚！沒吃過！看起來超讚！沒吃過！看起來超讚！</p>
+                                <p class="content">
+                                    <span class="userName">撒尼</span> <!-- {{ comment.user?.name }} -->
+                                    {{ comment.content }}
+                                </p>
                             </div>
                             <div class="downBox">
-                                <span class="time">{{ dateToRelative(post.publishedAt) }}</span>
+                                <span class="time">
+                                    {{ dateToRelative(comment.pubDate) }}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -39,15 +43,15 @@
                     <PostActions
                         :likes="post.liked_bies" 
                         :likedByMe="post.likedByMe" 
-                        @likeClick="this.$store.dispatch('toggleLike', post.id)"
+                        @likeClick="$store.dispatch('toggleLike', post.id)"
                         :favors="post.favored_bies" 
                         :favoredByMe="post.favoredByMe" 
-                        @favorClick="this.$store.dispatch('toggleFavor', post.id)"
+                        @favorClick="$store.dispatch('toggleFavor', post.id)"
                         :comments="post.comments"
                     />
                     <div class="sendBox">
-                        <input type="text" name="comment" id="" class="commentInput" placeholder="你覺得好吃嗎？">
-                        <button class="sendBtn">發佈</button>
+                        <input type="text" name="comment" v-model="content" id="" class="commentInput" placeholder="你覺得好吃嗎？">
+                        <button @click="store.dispatch('addComment', {content, postId:post.id})" class="sendBtn">發佈</button>
                     </div>
                 </div>
             </div>
@@ -56,14 +60,18 @@
 </template>
 
 <script setup>
+import TheAvatar from "./TheAvatar.vue";
 import PostActions from "./PostActions.vue";
 import TheModal from "../components/TheModal.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { dateToRelative } from "@/utils/date";
+
+const content= ref("");
 
 const store = useStore();
 const post = computed(() => store.getters.postDetails);
+const comments = computed(() => store.state.comment.list);
 </script>
 
 <style lang="scss" scoped>
@@ -132,6 +140,7 @@ const post = computed(() => store.getters.postDetails);
         display: flex;
         align-items: center;
         gap: 5px;
+        font-weight: 800;
     }
 
 
@@ -153,32 +162,6 @@ const post = computed(() => store.getters.postDetails);
         background-color: #000;
         margin-bottom: 10px;
         opacity: 0.2;
-    }
-}
-
-.actions {
-    gap: 5px;
-    display: flex;
-    align-items: center;
-    row-gap: 4px;
-    padding: 0 10px;
-
-    svg {
-        width: 32px;
-        height: 32px;
-        grid-row: 1 / 2;
-        cursor: pointer;
-
-        &:nth-child(1):hover {
-            fill: red;
-            stroke: none;
-        }
-    }
-
-
-
-    span {
-        font-size: 14px;
     }
 }
 

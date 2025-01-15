@@ -1,5 +1,6 @@
 <script setup>
 import { useStore } from "vuex";
+import TheAvatar from "./TheAvatar.vue";
 
 const store = useStore();
 
@@ -37,12 +38,15 @@ function publishPost() {
                 <button @click="publishPost()">
                     <img src="@/assets/upload.png" alt="resume">
                 </button>
+                <button>
+                    <TheAvatar style="width: 32px;"/>
+                </button>
                 <!-- <a href="https://github.com/sunnisacoder" target="_blank">
                     <img src="@/assets/github.png" alt="github">
                 </a> -->
-                <a href="https://www.cake.me/s--nhlzTMUkyVt4jZxloSzhNw--/funsunny1107" target="_blank">
+                <!-- <a href="https://www.cake.me/s--nhlzTMUkyVt4jZxloSzhNw--/funsunny1107" target="_blank">
                     <img src="@/assets/profile.png" alt="resume">
-                </a>
+                </a> -->
             </div>
             <!-- 手機版才出現 -->
             <div class="toggleMenu">
@@ -196,7 +200,6 @@ nav {
 .socialMediaBox {
     display: flex;
     align-items: center;
-    gap: 8px;
 
     button{
         border: none;

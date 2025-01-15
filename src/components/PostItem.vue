@@ -3,6 +3,7 @@ import PostActions from "./PostActions.vue";
 import { useStore } from "vuex";
 import { computed, onMounted, defineProps} from "vue";
 import { dateToRelative } from "@/utils/date";
+import TheAvatar from "./TheAvatar.vue";
 
 const store = useStore();
 const posts = computed(() => store.state.post.list);
@@ -24,22 +25,22 @@ defineProps({
     <div class="postItem" v-for="post in posts" :post="post" :key="post.id">
         <div class="inner">
             <div class="imgBox">
-                <img v-if="post.image" :src="post.image"  @click="this.$store.dispatch('showPostDetails', post.id)"/> 
+                <img v-if="post.image" :src="post.image"  @click="$store.dispatch('showPostDetails', post.id)"/> 
             </div>
             <div class="meta">
                 <div class="info">
-                    <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                    <span>{{ post?.user?.name }}</span>
+                    <TheAvatar/>
+                    <span>傘蜥蜴</span> <!-- {{ post?.user?.name }} -->
                 </div>
                 <PostActions 
                     :likes="post.liked_bies" 
                     :likedByMe="post.likedByMe" 
-                    @likeClick="this.$store.dispatch('toggleLike', post.id)"
+                    @likeClick="$store.dispatch('toggleLike', post.id)"
                     :favors="post.favored_bies" 
                     :favoredByMe="post.favoredByMe" 
-                    @favorClick="this.$store.dispatch('toggleFavor', post.id)"
+                    @favorClick="$store.dispatch('toggleFavor', post.id)"
                     :comments="post.comments"
-                    @commentsClick="this.$store.dispatch('showPostDetails', post.id)"
+                    @commentsClick="$store.dispatch('showPostDetails', post.id)"
                 />
             </div>
             <div class="des">
@@ -78,6 +79,7 @@ defineProps({
             display: flex;
             align-items: center;
             gap: 5px;
+            font-weight: 800;
 
             img {
                 width: 24px;
@@ -85,7 +87,6 @@ defineProps({
             }
         }
     }
-
 }
 
 
