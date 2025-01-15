@@ -8,11 +8,11 @@ import {
 
 export async function createPost(image, description) {
     const formData = new FormData();
-    formData.append("files", image);
+    formData.append("files.image", image);
     formData.append("data", JSON.stringify({
         description
     }));
-    // console.log([...formData.entries()]);
+    console.log([...formData.entries()]);
     await fetch("/api/posts", {
         method: "POST",
         body: formData,
@@ -27,7 +27,6 @@ export async function loadPosts(filters = "") {
     const response = await request(
         "/api/posts?populate=*" + (filters && `&${filters}`)
     );
-    // console.log(response.data?.[0].attributes?.image?.data?.[0]?.attributes?.url)
     return response.data.map((post) => ({
         id: post?.id,
         ...post?.attributes,
