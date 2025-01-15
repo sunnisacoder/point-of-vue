@@ -14,6 +14,7 @@ const showPostDetails = computed(() => store.state.showPostDetails);
 
 onMounted(() => {
     store.dispatch("loadAllPosts");
+    // 載入使用者資料->傳入postItem
 })
 </script>
 

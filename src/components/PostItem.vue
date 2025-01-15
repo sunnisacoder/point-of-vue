@@ -1,16 +1,33 @@
 <script setup>
 import PostActions from "./PostActions.vue";
 import { useStore } from "vuex";
-import { computed, onMounted, defineProps} from "vue";
+import { computed, onMounted, defineProps } from "vue";
 import { dateToRelative } from "@/utils/date";
 import TheAvatar from "./TheAvatar.vue";
 
 const store = useStore();
 const posts = computed(() => store.state.post.list);
+// console.log(posts)
 
 onMounted(() => {
     store.dispatch("loadAllPosts");
+
+    // 從 localStorage 拿34 35 36
+    const userLikesLocal = localStorage.getItem("user");
+    if (userLikesLocal) {
+        currentUser.likePost = userLikesLocal;
+    }
+    console.log('已拿到',userLikesLocal)
 })
+
+// 顯示用戶已點讚的貼文
+const currentUser = { 
+    likePost: [] 
+};
+function userLikes(postId) {
+    return currentUser.likePost.includes(postId);
+}
+
 
 defineProps({
     post: {
@@ -18,28 +35,31 @@ defineProps({
         default: () => ({}),
     },
 });
-
 </script>
 
 <template>
     <div class="postItem" v-for="post in posts" :post="post" :key="post.id">
         <div class="inner">
             <div class="imgBox">
-                <img v-if="post.image" :src="post.image"  @click="$store.dispatch('showPostDetails', post.id)"/> 
+                <img v-if="post.image" :src="post.image" @click="$store.dispatch('showPostDetails', post.id)" />
             </div>
             <div class="meta">
+                <!-- 顯示用戶已點讚的貼文 -->
+                <span v-if="userLikes(post.id)">Like</span>
+                <span v-else>XXX</span>
                 <div class="info">
-                    <TheAvatar/>
+                    <TheAvatar />
                     <span>傘蜥蜴</span> <!-- {{ post?.user?.name }} -->
                 </div>
+                <!-- :userLikes="" user 喜歡的 文章id -->
                 <PostActions 
                     :likes="post.liked_bies" 
-                    :likedByMe="post.likedByMe" 
-                    @likeClick="$store.dispatch('toggleLike', post.id)"
-                    :favors="post.favored_bies" 
+                    :likedByMe="post.likedByMe"
+                    @likeClick="$store.dispatch('toggleLike', post.id)" 
+                    :favors="post.favored_bies"
                     :favoredByMe="post.favoredByMe" 
                     @favorClick="$store.dispatch('toggleFavor', post.id)"
-                    :comments="post.comments"
+                    :comments="post.comments" 
                     @commentsClick="$store.dispatch('showPostDetails', post.id)"
                 />
             </div>

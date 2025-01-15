@@ -52,10 +52,12 @@ export const post = {
         },
         async toggleLike({commit}, id) {
             const isLike = await likePost(id);
+            // console.log(isLike)
             commit("toggleLike", {
                 id,
                 isLike
             });
+            loadPosts();
         },
         async toggleFavor({commit}, id) {
             const isFavor = await favorPost(id);

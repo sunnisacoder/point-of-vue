@@ -48,6 +48,9 @@ export async function login(email, password) {
             password,
         },
     });
+    result.user.likes = [34,35,36] 
+    // const userLikes = result.user.likes;
+    console.log('like',result.user.likes)
     setJwtToken(result.jwt);
     saveUser(result.user);
     return result.user;

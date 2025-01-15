@@ -27,6 +27,7 @@ export async function loadPosts(filters = "") {
     const response = await request(
         "/api/posts?populate=*" + (filters && `&${filters}`)
     );
+    console.log('wasd',response.data)
     return response.data.map((post) => ({
         id: post?.id,
         ...post?.attributes,
