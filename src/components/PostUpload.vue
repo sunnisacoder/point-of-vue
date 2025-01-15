@@ -13,7 +13,7 @@ async function handleImageUpload(e) {
     const imageFile = e.target.files[0];
     if (imageFile) {
         image.value = imageFile; // 保存文件對象
-        imageObjUrl.value = URL.createObjectURL(imageFile);
+        imageObjUrl.value = URL.createObjectURL(imageFile);//預覽用
     }
 }
 

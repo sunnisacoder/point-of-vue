@@ -1,19 +1,21 @@
 <template>
-    <TheModal>
+    <TheModal @close="this.$store.dispatch('hidePostDetails')">
         <div class="detailBox">
             <div class="imgBox">
                 <picture>
-                    <img src="../assets/market_banner.png">
+                    <img :src="post.image" />
                 </picture>
             </div>
             <div class="rightBox">
                 <div class="meta">
                     <div class="info">
                         <img src="../assets/avatarDefault.png" alt="" class="avatar">
-                        <span>范桑尼</span>
+                        <span>{{ post.user?.name }}</span>
                     </div>
                     <div class="des">
-                        <p>這間雞排超讚，為什麼夜市王他會被刷下來？這間雞排超讚，為什麼夜市王他會被刷下來？這間雞排超讚，為什麼夜市王他會被刷下來？</p>
+                        <p>
+                            {{ post.description }}
+                        </p>
                     </div>
                     <span class="time">5分鐘之前發布</span>
                 </div>
@@ -28,17 +30,21 @@
                                         class="userName">巧柔</span>沒吃過！看起來超讚！沒吃過！看起來超讚！沒吃過！看起來超讚！沒吃過！看起來超讚！</p>
                             </div>
                             <div class="downBox">
-                                <span class="time">2024年12月13日</span>
+                                <span class="time">{{ dateToRelative(post.publishedAt) }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="actionBox">
-                    <div class="actions">
-                        <TheIcon icon="like" fill="none" stroke="#000" /><span>87</span>
-                        <TheIcon icon="comment" fill="none" stroke="#000" /><span>6</span>
-                        <TheIcon icon="favorite" fill="none" stroke="#000" /><span>1</span>
-                    </div>
+                    <PostActions
+                        :likes="post.liked_bies" 
+                        :likedByMe="post.likedByMe" 
+                        @likeClick="this.$store.dispatch('toggleLike', post.id)"
+                        :favors="post.favored_bies" 
+                        :favoredByMe="post.favoredByMe" 
+                        @favorClick="this.$store.dispatch('toggleFavor', post.id)"
+                        :comments="post.comments"
+                    />
                     <div class="sendBox">
                         <input type="text" name="comment" id="" class="commentInput" placeholder="你覺得好吃嗎？">
                         <button class="sendBtn">發佈</button>
@@ -50,12 +56,17 @@
 </template>
 
 <script setup>
-import TheIcon from "../components/TheIcon.vue";
+import PostActions from "./PostActions.vue";
 import TheModal from "../components/TheModal.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+import { dateToRelative } from "@/utils/date";
+
+const store = useStore();
+const post = computed(() => store.getters.postDetails);
 </script>
 
 <style lang="scss" scoped>
-
 .detailBox {
     display: flex;
     gap: 10px;

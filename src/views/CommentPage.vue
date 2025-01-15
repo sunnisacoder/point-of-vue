@@ -2,14 +2,14 @@
 import TheIcon from "../components/TheIcon.vue";
 import { useStore } from "vuex";
 import { computed, onMounted} from "vue";
-// import CommentPageDetail from "../components/CommentPageDetail.vue";
+import CommentPageDetail from "../components/CommentPageDetail.vue";
 import PostUpload from "../components/PostUpload.vue";
 import PostList from "../components/PostList.vue";
 import PostItem from "@/components/PostItem.vue";
 
 const store = useStore();
 const showPostUpload = computed(() => store.state.showPostUpload);
-// const posts = computed(() => store.state.post.list);
+const showPostDetails = computed(() => store.state.showPostDetails);
 
 
 onMounted(() => {
@@ -29,7 +29,7 @@ onMounted(() => {
             <PostItem/>
         </PostList>
     </div>
-    <!-- <CommentPageDetail/> -->
+    <CommentPageDetail v-if="showPostDetails"/>
     <PostUpload v-if="showPostUpload" />
 </template>
 
