@@ -21,14 +21,6 @@ function publishPost() {
                     <span>Home</span>
                     <span>回首頁</span>
                 </router-link>
-                <!-- <router-link to="/about" class="flipEffect">
-                    <span>about</span>
-                    <span>關於夜市王</span>
-                </router-link> -->
-                <!-- <router-link to="" class="flipEffect">
-                    <span>rank</span>
-                    <span>美食評分</span>
-                </router-link> -->
                 <router-link to="/comment" class="flipEffect">
                     <span>comment</span>
                     <span>我是美食家</span>
@@ -38,9 +30,11 @@ function publishPost() {
                 <button @click="publishPost()">
                     <img src="@/assets/upload.png" alt="resume">
                 </button>
-                <button>
-                    <TheAvatar style="width: 32px;"/>
-                </button>
+                <router-link to="/profile">
+                    <button>
+                        <TheAvatar style="width: 35px; height: 35px;"/>
+                    </button>
+                </router-link>
                 <!-- <a href="https://github.com/sunnisacoder" target="_blank">
                     <img src="@/assets/github.png" alt="github">
                 </a> -->

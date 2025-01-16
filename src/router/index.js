@@ -6,6 +6,8 @@ import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginPage.vue'
 import CommentPage from "../views/CommentPage.vue";
 import SearchPage from "../views/SearchPage.vue";
+import ProfilePage from '../views/ProfilePage.vue';
+import ProfileEditPage from '../views/ProfileEditPage.vue';
 import { getJwtToken } from "../apis/auth";
 
 const routes = [{
@@ -35,6 +37,16 @@ const routes = [{
     path: '/search-result',
     name: 'search-result',
     component: SearchPage
+  }, 
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfilePage
+  },
+  {
+    path: '/profile/edit',
+    name: 'profile-edit',
+    component: ProfileEditPage
   }
 ]
 

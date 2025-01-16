@@ -2,10 +2,10 @@
     <footer>
         <div class="form">
             <div class="inner">
-                <a href="javascript:;" class="formBtn">
+                <router-link to="/profile" class="formBtn">
                     <img src="@/assets/resume.png" alt="">
                     <span>個人檔案</span>
-                </a>
+                </router-link>
             </div>
         </div>
         <div class="wrap">
