@@ -1,5 +1,5 @@
 import {
-    getJwtToken
+    getJwtToken, getUser
 } from "./auth";
 import {
     request
@@ -36,6 +36,20 @@ export async function loadPosts(filters = "") {
             id: post?.attributes?.user?.data?.id,
             ...post?.attributes?.user?.data?.attributes,
         },
+    }));
+}
+
+export async function loadPostsByMe(){
+    return loadPosts(`filters[user][id][$eq]=${getUser().id}`);
+}
+
+export async function loadPostsLikedOrFavoredByMe(type = "likes"){
+    const response = await request(
+        `/api/users/me?populate[${type}][populate][0]=image`
+    );
+    return response[type].map((post)=>({
+        ...post,
+        image:post?.image?.[0].url,
     }));
 }
 

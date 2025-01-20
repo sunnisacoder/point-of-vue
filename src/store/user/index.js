@@ -2,8 +2,8 @@ import {
     getUser,
     register,
     login,
-    changeUser
 } from "../../apis/auth";
+import { changeUser } from "../../apis/user";
 
 export const user = {
     state() {

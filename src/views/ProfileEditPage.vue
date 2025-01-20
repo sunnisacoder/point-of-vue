@@ -40,8 +40,8 @@ async function updateUser(){
                 </button>
             </div>
         </div>
+        <!-- @submit.prevent="updateUser" -->
         <form class="profileForm" @submit.prevent="updateUser">
-            <!-- @submit.prevent="updateUser" -->
             <div class="inner">
                 <label for="username">名稱</label>
                 <input type="text" v-model="profileData.username"/>

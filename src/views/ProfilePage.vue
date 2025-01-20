@@ -1,5 +1,53 @@
 <script setup>
 import TheAvatar from '@/components/TheAvatar.vue';
+import { useStore } from "vuex";
+import { computed, reactive, ref, watch } from "vue"
+import { loadPostsByMe, loadPostsLikedOrFavoredByMe,} from "../apis/post";
+
+const store = useStore();
+const user = computed(() => store.state.user.user);
+
+const tabs = ref([
+    {
+        title: "貼文",
+    },
+    {
+        title: "按讚",
+    },
+    {
+        title: "收藏",
+    },
+]);
+
+const currentTab = ref(0);
+
+const myPosts = reactive({
+    0: [],
+    1: [],
+    2: [],
+});
+
+watch(currentTab, async () => {
+    switch (currentTab.value) {
+        case 0:
+            if (myPosts[0].length == 0) {
+                myPosts[0] = await loadPostsByMe();
+            }
+            break;
+        case 1:
+            if (myPosts[1].length == 0) {
+                myPosts[1] = await loadPostsLikedOrFavoredByMe();
+            }
+            break;
+        case 2:
+            if (myPosts[2].length == 0) {
+                myPosts[2] = await loadPostsLikedOrFavoredByMe('favors');
+            }
+            break;
+        default:
+            return;
+    }
+}, { immediate: true });
 </script>
 
 <template>
@@ -9,39 +57,35 @@ import TheAvatar from '@/components/TheAvatar.vue';
                 <div class="informationBox">
                     <div class="inner">
                         <div class="intro">
-                            <p class="name">撒尼</p>
-                            <p>這是我的簡介</p>
-                            <p>網站</p>
+                            <p class="name">{{ user.name }}</p>
+                            <p>{{ user.intro }}</p>
+                            <p>{{ user.website }}</p>
                         </div>
                         <div class="imgBox">
-                            <TheAvatar style="width: 84px; height: 84px;" />
+                            <TheAvatar style="width: 84px; height: 84px;" :src="user.avatar" />
                         </div>
                     </div>
                     <router-link to="/profile/edit">編輯個人檔案</router-link>
                 </div>
             </div>
+            <!-- 為了確保貼文的狀態，把 tab 定義成數組，放入 ref 當中 -->
             <div class="tab">
                 <div class="tabBtns">
-                    <div class="tabBtn active">
-                        <p>貼文</p>
-                    </div>
-                    <div class="tabBtn">
-                        <p>按讚</p>
-                    </div>
-                    <div class="tabBtn">
-                        <p>收藏</p>
+                    <div class="tabBtn" v-for="(tab, index) in tabs" :key="index" @click="currentTab = index"
+                    :class="{ active: index == currentTab }">
+                        <p>{{ tab.title }}</p>
                     </div>
                 </div>
                 <div class="tabContent">
-                    <p>13則貼文</p>
+                    <p>
+                        {{ myPosts[currentTab].length }}
+                    </p>
                     <div class="posts">
-                        <!-- v-for="n in 9" -->
-                        <img src="../assets/avatarDefault.png" class="postImage">
-                        <img src="../assets/avatarDefault.png" class="postImage">
-                        <img src="../assets/avatarDefault.png" class="postImage">
+                        <img v-for="post in myPosts[currentTab]" :src="post.image" :key="post.id" class="postImage">
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -81,7 +125,6 @@ import TheAvatar from '@/components/TheAvatar.vue';
 
     .intro {
         text-align: left;
-        // background-color: red;
     }
 
     a {
